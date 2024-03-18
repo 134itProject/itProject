@@ -1,0 +1,73 @@
+# YML是一种文件格式，全称为YAML（YAML Ain't Markup Language），SpringBoot通常使用YML作为项目配置。
+# 它是一种人类可读的、简洁明了的数据序列化格式。YAML文件格式通常用于配置文件、数据交换、消息传递和其他应用程序。
+# 可以通过文本编辑器进行编辑，也可以通过程序进行解析。YML文件格式是一种以层级缩进的方式表示程序数据结构的格式。
+# 在数据表示方面比XML等格式更加简洁清晰易读。YML文件格式通常以“.yml”为扩展名。
+
+#后端服务端口号
+server:
+  port: 9231
+
+#Spring配置
+spring:
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/DB_Cinema?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+      username: root
+      password: 12345678
+      initialSize: 5
+      minIdle: 10
+      maxActive: 20
+      maxWait: 60000
+      connectTimeout: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+
+  devtools:
+    restart:
+      enabled: true
+  freemarker:
+    cache: false
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+#Mybatis配置
+mybatis:
+  type-aliases-package: com.shanzhu.cm.**.domain
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#日志配置
+logging:
+  level:
+    com.shanzhu: trace
+    org.springframework: warn
+
+#数据库分页查询插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
