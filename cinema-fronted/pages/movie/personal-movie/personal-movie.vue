@@ -1,99 +1,12 @@
 <template>
 	<view>
-	<uni-card class="ui-card" :is-full="true">
-	<view class="header">
-		<!-- 城市 -->
-	<view class="citybox">
-		<text  @click="toggle('left')">
-			<text class="button-text">{{cityname}}</text>
-		</text>
-		
-		<!-- 普通弹窗 -->
-		<uni-popup ref="popup" background-color="#fff" @change="changes">
-			<view class="popup-content" :class="{ 'popup-height': type === 'left' || type === 'right' }">
-				<text
-					class="text">popup 内容
-				</text>
-				<!-- 城市列表 -->
-				<uni-indexed-list :options="list" :show-select="true" @click="bindClick" />
-					</view>
-		</uni-popup>
-		</view>	
-	<view class='searchBox'>
-	<!-- 搜索 -->
-	<uni-search-bar placeholder="只要免费的嘿嘿嘿" style="width:70vw" radius="100" @confirm="search" :focus="true" v-model="searchValue" @blur="blur" @focus="focus" @input="input"
-					cancelButton="none" @cancel="cancel" @clear="clear">
-	</uni-search-bar>
-	</view>
-	</view>
-	<!-- 头部导航菜单 -->
-	<uni-breadcrumb class="header-nav" separator=" ">
-	  <uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-	    {{route.name}}
-	  </uni-breadcrumb-item>
-	  
-	</uni-breadcrumb>
-	</uni-card>
-	<!-- 头部轮播图-->
-	<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
-		<swiper class="swiper-box" @change="change">
-			<swiper-item v-for="(item ,index) in info" :key="index">
-				<view class="swiper-item">
-					<image class="background-img-vague" :src="item.url" mode=""></image>
-				
-					{{item.content}}
-				</view>
-			</swiper-item>
-		</swiper>
-	</uni-swiper-dot>
-	<uni-card title="热映影片" :isFull="true" sub-title="新热预告" style="display: inline;" extra="全部>">
-	<!-- 热映影片 -->
-	<!-- <z-swiper class="z-swipers" v-model="movielist" :options="{slidesPerView : 2, slidesPerGroup : 3,panorama: {
-		depth: 150,
-		rotate: 45,
-	}}">
-			<z-swiper-item v-for="(item,index) in movielist" :key="index">
-				<image class="movie-image" :src="item['movie-url']" mode="aspectFill">
-				</image>
-				<text class="movie-text">{{item['movie-name']}}</text>
-			</z-swiper-item>
-	</z-swiper> -->
-	  <div class="z-swiper">
-	    <div class="swiper-container">
-	      <div class="swiper-wrapper">
-	        <div class="swiper-slide" v-for="(item, index) in movielist" :key="index">
-	          <uni-swiper-dot >
-	            <img :src="item['movie-url']" alt="movie poster" class="movie-image">
-				<div class="bui-score-wrap">
-					<div class="bui-score-text-wrap">
-						<span >
-							<span style="color:#ffffff;font-size: 23rpx;">{{ item['movie-score'] }}分</span>
-						</span>
-						</div>
-				</div>
-	           
-				
-	          </uni-swiper-dot>
-			  <div class="movie-text">
-						<span >{{ item['movie-name'] }}</span>
-				</div>
-			  <div class="movie-footer">
-				 <!-- <button size="default" type="default" hover-class="button"   :circle="true" @click="">购票</button>
-				 -->
-				 <button size="mini" type="default" 
-				 	style="color:#ffffff;backgroundColor:#ef16b9;borderColor:#ff55ff;border-radius:19rpx;margin-top:12rpx" 
-				 	hover-class="is-hover">购票</button>
-				</div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</uni-card >
+	
+	<!-- <uni-card :isfull="true"> -->
 	<!-- 影片列表 -->
 	<!-- <uni-card title="正在热映" extra="" :isFull="true"> -->
 		<div class="swiper-slide" v-for="(item, index) in movieinfolist" :key="index">
 		
-		<uni-card class="cinema-top" :isFull="false" ref="cinemaTop" >
+		<uni-card class="cinema-top" :isFull="true" ref="cinemaTop" >
 		  <view class="tops-item" >
 		    <view class="cinema-img">
 		      <image :src="item.posterUrl"></image>
@@ -115,29 +28,14 @@
 		      <view class="list-type">{{ item.movieType }}|{{ item.duration }}分钟</view>
 		      <view class="list-type">{{ item.publishDate }} 上映</view>
 		      <view class="list-type"><text>{{ item.like }}</text>人想看</view>
-				 <button size="mini" type="default"
-					style="color:#ffffff;backgroundColor:#ef16b9;borderColor:#ff55ff;border-radius:19rpx;margin-top:12rpx" 
-					hover-class="is-hover">购票
-				</button>
+				<uni-fav :checked="checked_value" class="favBtn" :circle="true" bg-color="#dd524d"
+									bg-color-checked="#ff0000" fg-color="#ffffff" fg-color-checked="#ffffff" @click="check_click" />
 			</view>
 		  </view>
 		   </uni-card>
 		 
 		</div>
-	<view class="movie-boom">
-		<view class="movie-boom-item" @click="getHome">
-			<image src="https://hijinka.oss-cn-shanghai.aliyuncs.com/uploads/mall1/20220308/08d86bdb75038ff5577cc38a6256189e.png"></image>
-			<view class="boom-item-text">首页</view>
-		</view>
-		<view class="movie-boom-item" @click="getIndex">
-			<image src="https://hijinka.oss-cn-shanghai.aliyuncs.com/uploads/mall1/20220308/08d86bdb75038ff5577cc38a6256189e.png"></image>
-			<view class="boom-item-text">购票</view>
-		</view>
-		<view class="movie-boom-item" @click="getMy">
-			<image src="https://hijinka.oss-cn-shanghai.aliyuncs.com/uploads/mall1/20220308/b323a0d5a4a616ba48ca6b659eb43e43.png"></image>
-			<view class="boom-item-text" style="color: #FE602B;">我的</view>
-		</view>
-	</view>
+	
 	</view>
 	
 </template>
@@ -149,6 +47,7 @@
 	export default {
 		data() {
 			return {
+				checked_value:false,
 				list: city.list,
 				type: 'left',//城市弹窗
 				cityname:'重庆',
@@ -296,11 +195,13 @@
 			      slidesPerView: 'auto',
 			      spaceBetween: 0,
 			      grabCursor: true,
-				   // spaceBetween: 0, // 设置图片之间的间隔，单位为像素
-			      // other swiper options here
+				   
 			    })
 		},
 		methods: {
+			check_click(){
+				this.checked_value = !this.checked_value;
+			},
 			 focus() {
 			        console.log('Input focused');
 			    },
@@ -358,96 +259,9 @@
 </script>
 
 <style lang="less">
-.movie-boom{
-		display: flex;
-		align-items: center;
-		padding-top: 16rpx;
-		padding-bottom: 4rpx;
-		background-color: #FFFFFF;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		.movie-boom-item{
-			width: 50%;
-			text-align: center;
-			image{
-				width: 48rpx;
-				height: 48rpx;
-			}
-			.boom-item-text{
-				color: #A2A4AA;
-				font-size: 20rpx;
-			}
-		}
-	}	
-	 .movie-footer{
-		 border-radius: 10rpx;
-		
-	 }
-	.z-swiper {
-	  .swiper-wrapper{
-		  width: 27vw;
-	  }
-	  
-	  .bui-score-wrap {
-	  	 font-size: 12rpx;
-	      align-items: flex-end;
-	      background-image: linear-gradient(180deg, transparent, #000);
-	      border-radius: 10rpx;
-	      bottom: 0rpx;
-	      box-sizing: border-box;
-	      color: #fff;
-	      display: flex;
-	      flex-direction: row;
-	      height: 8.26667vmin;
-	      padding-bottom: 0.33333vmin;
-	      padding-left: 1.6vmin;
-	      position: absolute;
-	      width: 76%;
-	  }
-	  .movie-image{
-	  	 height: 27.46667vmin;
-	  	  width: 20.53333vmin;
-	  	  border-radius: 10rpx;
-	  }
-	  
-	  .movie-text{
-		margin-top: 12rpx;
-		color:#000000;
-	  	font-size: 14px;
-	  	align-items: center;
-	  }
-	}
 
-	
-	.z-swipers{
-		width:90vw;
-	}
-	.swiper-slide{
-		   margin-left: 0rpx;
-	}
-	
-	.scroll-view_H {
-		white-space: nowrap;
-		width: 100%;
-	}
-	.uni-search-bar{
-		
-		// width: 50vw;
-	}
-	.popup-content {
-		@include flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px;
-		width: 60vw;
-		height: 50px;
-		background-color: #fff;
-		
-		}
 .ui-card{
-	
+	border-radius: 25rpx;
 	.header{
 		// justify-content: space-between;
 		display: flex;
