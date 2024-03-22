@@ -21,7 +21,7 @@ public interface SysUserMapper {
 
     SysUser findUserById(Long id);
 
-    SysUser findUserByname(String userName);
+    SysUser findUserByName(String userName);
 
     int addUser(SysUser sysUser);
 

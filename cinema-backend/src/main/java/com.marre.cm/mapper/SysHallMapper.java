@@ -16,7 +16,7 @@ public interface SysHallMapper {
 
     List<SysHall> findAllHalls(SysHall sysHall);
 
-    SysHall findHallById(Long id);
+    SysHall findHallById(SysHall sysHall);
 
     SysHall findHall();
 

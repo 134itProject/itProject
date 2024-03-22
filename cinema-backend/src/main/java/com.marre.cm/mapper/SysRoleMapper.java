@@ -20,7 +20,7 @@ public interface SysRoleMapper {
 
     int addRole(SysRole sysRole);
 
-    int update(SysRole sysRole);
+    int updateRole(SysRole sysRole);
 
     int deleteRole(Long id);
 

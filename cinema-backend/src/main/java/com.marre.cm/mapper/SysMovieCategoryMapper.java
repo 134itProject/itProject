@@ -2,6 +2,7 @@ package com.marre.cm.mapper;
 
 import com.marre.cm.domain.SysBill;
 import com.marre.cm.domain.SysMovieCategory;
+import com.marre.cm.domain.SysMovieToCategory;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,11 +26,11 @@ public interface SysMovieCategoryMapper {
 
     int updateCategory(SysMovieCategory sysMovieCategory);
 
-    int deleteCategory(SysMovieCategory sysMovieCategory);
+    int deleteCategory(Long id);
 
-    int addMovieToCategory(SysMovieCategory sysMovieCategory);
+    int addMovieToCategory(SysMovieToCategory sysMovieToCategory);
 
-    int deleteMovieToCategory(SysMovieCategory sysMovieCategory);
+    int deleteMovieToCategory(SysMovieToCategory sysMovieToCategory);
 
 
 }
