@@ -62,6 +62,7 @@ public class SysSession implements Serializable{
 
     private Integer seatNums;
 
+    //已售座位
     private Integer soldNums;
 
     private SysHall sysHall;
