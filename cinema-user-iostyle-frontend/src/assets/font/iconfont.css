@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4367934 */
+  src: url('iconfont.woff2?t=1702279440776') format('woff2'),
+       url('iconfont.woff?t=1702279440776') format('woff'),
+       url('iconfont.ttf?t=1702279440776') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*登录标题*/
+.icon-login-title:before {
+  content: "\e66f";
+}
+
+/*确认按钮*/
+.icon-sure-button:before {
+    content: "\e677";
+}
+
+/*退出按钮*/
+.icon-login-out:before {
+    content: "\e828";
+}
+
+/*编辑按钮*/
+.icon-edit-button:before {
+    content: "\e602";
+}
+
+/*添加按钮*/
+.icon-add-button:before {
+    content: "\e600";
+}
+
+/*详情按钮*/
+.icon-detail-button:before {
+    content: "\e643";
+}
+
+/*列表按钮*/
+.icon-list-button:before {
+    content: "\e62d";
+}
+
+/*删除按钮*/
+.icon-delete-button:before {
+    content: "\e68e";
+}
+
+/*搜索按钮*/
+.icon-search-button:before {
+    content: "\e8ba";
+}
+
+/*首页菜单*/
+.icon-home-menu:before {
+    content: "\e8c6";
+}
+
+/*影片管理菜单*/
+.icon-movieManage-menu:before {
+    content: "\e60e";
+}
+
+/*影厅管理菜单*/
+.icon-movieLow-menu:before {
+    content: "\e98f";
+}
+
+/*影厅管理菜单*/
+.icon-order-menu:before {
+    content: "\e62d";
+}
+
+/*用户管理菜单*/
+.icon-user-menu:before {
+    content: "\e604";
+}
+
+/*用户权限管理菜单*/
+.icon-power-menu:before {
+    content: "\e66e";
+}
+
+/*用户logo*/
+.icon-user-logo:before {
+    content: "\e63a";
+}
+
+/*密码logo*/
+.icon-password-logo:before {
+    content: "\e656";
+}
+
+
+
+
+
+
